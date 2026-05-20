@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styling */
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0A0202;
+}
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;          /* grow with content, never shrink */
+  overflow-x: hidden;
+  background-color: #0A0202;
+}
+
+/* Custom Gold Scrollbar - Desktop Only to prevent layout shifting on mobile Chrome */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0202;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(247, 181, 0, 0.25);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.6);
+  }
+}
+
+/* Custom Serif Italics styling for elegant text formatting */
+.font-serif-italics {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Vermilion-tinted Radial Vignette Overlay for warm spiritual atmosphere and contrast */
+.bg-radial-vignette {
+  background: radial-gradient(circle, transparent 20%, rgba(45, 4, 4, 0.5) 60%, rgba(10, 2, 2, 0.95) 100%);
+}
+
+/* Path Drawing Animations */
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Floral Loader Vines Animation */
+.vine-path {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawPath 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.leaf-path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawPath 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes popFlower {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.flower-scale {
+  transform: scale(0);
+  transform-origin: center;
+  animation: popFlower 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.ganesha-path-1 {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawPath 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.ganesha-path-2 {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawPath 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 0.6s;
+}
+
+.ganesha-path-3 {
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  animation: drawPath 4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 1.2s;
+}
+
+.ganesha-path-4 {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: drawPath 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 2.2s;
+}
+
+.ganesha-path-5 {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawPath 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 2.8s;
+}
+
+.ganesha-path-6 {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: drawPath 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation-delay: 3s;
+}
+
+/* Text Layer Base Styling */
+.text-layer {
+  will-change: transform, opacity, filter;
+  backface-visibility: hidden;
+}
+
+/* RSVP Form styling helper */
+.rsvp-btn.selected {
+  border-color: #F7B500 !important;
+  background-color: rgba(245, 130, 32, 0.15) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 15px rgba(247, 181, 0, 0.15);
+}
+
+/* Canvas Optimization styling */
+#invitation-canvas {
+  will-change: contents;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Luxury Form Elements */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+  font-style: italic;
+}
+
+/* Float particles animation: floating marigold petals */
+@keyframes floatUp {
+  0% {
+    transform: translateY(110vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 30px;
+  }
+}
+
+.particle {
+  position: absolute;
+  background: linear-gradient(135deg, #F58220 0%, #F7B500 100%);
+  border-radius: 60% 0% 60% 50%; /* Traditional teardrop/marigold petal shape */
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  animation: floatUp 16s linear infinite, sway 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Section reveal transitions — driven by IntersectionObserver */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(4px);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out, filter 0.45s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out, filter 0.45s ease-out;
+}
