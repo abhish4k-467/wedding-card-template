@@ -212,7 +212,6 @@ function initSmoothAnchorScroll() {
 
       event.preventDefault();
       target.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", targetId);
     });
   });
 }
