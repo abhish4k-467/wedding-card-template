@@ -198,7 +198,26 @@ function initSectionReveals() {
   revealElements.forEach((el) => observer.observe(el));
 }
 
-// ─── 6. Particles ─────────────────────────────────────────────────────────────
+// ─── 6. Smooth anchor navigation ──────────────────────────────────────────────
+function initSmoothAnchorScroll() {
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+  anchorLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", targetId);
+    });
+  });
+}
+
+// ─── 7. Particles ─────────────────────────────────────────────────────────────
 function createParticles() {
   const container = document.getElementById("particles-overlay");
   if (!container) return;
@@ -212,7 +231,7 @@ function createParticles() {
   }
 }
 
-// ─── 7. RSVP ──────────────────────────────────────────────────────────────────
+// ─── 8. RSVP ──────────────────────────────────────────────────────────────────
 function initRSVPEvents() {
   if (!acceptBtn || !declineBtn || !rsvpForm) return;
 
@@ -244,7 +263,7 @@ function initRSVPEvents() {
   });
 }
 
-// ─── 8. Audio Controls ──────────────────────────────────────────────────────────
+// ─── 9. Audio Controls ──────────────────────────────────────────────────────────
 function initAudioControls() {
   const bgAudio = document.getElementById("bg-audio");
   const muteBtn = document.getElementById("mute-btn");
@@ -289,6 +308,7 @@ window.addEventListener("resize", () => {
 // ─── Boot ─────────────────────────────────────────────────────────────────────
 window.addEventListener("DOMContentLoaded", () => {
   resizeCanvas();
+  initSmoothAnchorScroll();
 
   // Hide sections immediately (before anything is visible)
   initSectionReveals();
