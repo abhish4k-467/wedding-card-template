@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,7 +182,7 @@
     <main id="main-content" class="relative opacity-0 w-full">
         
         <!-- Audio Element -->
-        <audio id="bg-audio" loop>
+        <audio id="bg-audio" loop preload="none">
             <source src="audio.mp3" type="audio/mpeg">
         </audio>
 
@@ -214,7 +214,7 @@
                 
                 <!-- Text Layer 1: Intro with Shloka -->
                 <div class="text-layer absolute flex flex-col items-center text-center px-4 max-w-4xl" id="layer-1">
-                    <img src="./images/ganesha.png" alt="Shree Ganesha" class="w-16 h-16 sm:w-24 sm:h-24 mb-3 sm:mb-6 object-contain opacity-0 translate-y-4 drop-shadow-[0_0_12px_rgba(212,175,55,0.6)]">
+                    <img loading="lazy" decoding="async" fetchpriority="low" src="./images/ganesha.png" alt="Shree Ganesha" class="w-16 h-16 sm:w-24 sm:h-24 mb-3 sm:mb-6 object-contain opacity-0 translate-y-4 drop-shadow-[0_0_12px_rgba(212,175,55,0.6)]">
                     <span class="font-sans text-xs sm:text-base tracking-[0.3em] text-gold uppercase mb-3 sm:mb-5 opacity-0 translate-y-4">|| श्री श्री गणेशाय नमः ||</span>
                     <p class="font-serif italic text-sm sm:text-lg text-gold-light/95 max-w-xl mb-6 sm:mb-10 leading-relaxed tracking-wider opacity-0 translate-y-4">
                         वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ。<br>
@@ -356,7 +356,7 @@
                     <!-- Groom Card -->
                     <div class="story-card bg-onyx-dark/40 border border-gold/15 p-8 rounded-3xl backdrop-blur-sm transition-all duration-500 hover:border-gold/35 hover:shadow-[0_15px_30px_rgba(212,175,55,0.05)] flex flex-col items-center">
                         <div class="w-32 h-40 rounded-t-full overflow-hidden border border-gold/25 mb-6 shadow-[0_5px_15px_rgba(0,0,0,0.4)] relative bg-[#1c0808]">
-                            <img decoding="async" src="./images/groom_portrait.png" alt="Aarav Sharma" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                            <img loading="lazy" decoding="async" fetchpriority="low" src="./images/groom_portrait.png" alt="Aarav Sharma" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                         </div>
                         <h3 class="font-display text-2xl text-white tracking-widest uppercase mb-1" style="font-family: 'Cinzel', serif;">Aarav</h3>
                         <span class="text-[9px] tracking-[0.2em] text-gold-light/60 uppercase mb-4">Groom</span>
@@ -371,7 +371,7 @@
                     <!-- Bride Card -->
                     <div class="story-card bg-onyx-dark/40 border border-gold/15 p-8 rounded-3xl backdrop-blur-sm transition-all duration-500 hover:border-gold/35 hover:shadow-[0_15px_30px_rgba(212,175,55,0.05)] flex flex-col items-center">
                         <div class="w-32 h-40 rounded-t-full overflow-hidden border border-gold/25 mb-6 shadow-[0_5px_15px_rgba(0,0,0,0.4)] relative bg-[#1c0808]">
-                            <img decoding="async" src="./images/bride_portrait.png" alt="Ananya Verma" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                            <img loading="lazy" decoding="async" fetchpriority="low" src="./images/bride_portrait.png" alt="Ananya Verma" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                         </div>
                         <h3 class="font-display text-2xl text-white tracking-widest uppercase mb-1" style="font-family: 'Cinzel', serif;">Ananya</h3>
                         <span class="text-[9px] tracking-[0.2em] text-gold-light/60 uppercase mb-4">Bride</span>
@@ -398,7 +398,7 @@
                     <div class="story-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center transition-all duration-700">
                         <div class="overflow-hidden rounded-2xl border border-gold/10 p-1.5 bg-onyx-dark/30 hover:border-gold/20 transition-all duration-300">
                             <div class="overflow-hidden rounded-xl h-64 sm:h-80 relative animate-[pulse_8s_infinite]">
-                                <img decoding="async" src="./images/candid_1.png" alt="A Chance Encounter" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_1.png" alt="A Chance Encounter" class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-40"></div>
                             </div>
                         </div>
@@ -415,7 +415,7 @@
                     <div class="story-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center transition-all duration-700">
                         <div class="overflow-hidden rounded-2xl border border-gold/10 p-1.5 bg-onyx-dark/30 hover:border-gold/20 transition-all duration-300 md:order-last">
                             <div class="overflow-hidden rounded-xl h-64 sm:h-80 relative animate-[pulse_8s_infinite]">
-                                <img decoding="async" src="./images/candid_4.png" alt="The Alignment of Hearts" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_4.png" alt="The Alignment of Hearts" class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-40"></div>
                             </div>
                         </div>
@@ -432,7 +432,7 @@
                     <div class="story-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center transition-all duration-700">
                         <div class="overflow-hidden rounded-2xl border border-gold/10 p-1.5 bg-onyx-dark/30 hover:border-gold/20 transition-all duration-300">
                             <div class="overflow-hidden rounded-xl h-64 sm:h-80 relative animate-[pulse_8s_infinite]">
-                                <img decoding="async" src="./images/candid_3.png" alt="The Auspicious Betrothal" class="w-full h-full object-cover">
+                                <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_3.png" alt="The Auspicious Betrothal" class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-40"></div>
                             </div>
                         </div>
@@ -460,7 +460,7 @@
                     <!-- Ceremony 1 -->
                     <div class="gallery-item group relative overflow-hidden rounded-2xl border border-gold/10 bg-onyx-dark/30 p-2 transition-all duration-500 hover:border-gold/30 hover:shadow-[0_15px_30px_rgba(247,181,0,0.1)]">
                         <div class="overflow-hidden rounded-xl h-80 sm:h-96 relative">
-                            <img decoding="async" src="./images/candid_2.png" alt="Ganesh Puja &amp; Haldi" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
+                            <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_2.png" alt="Ganesh Puja &amp; Haldi" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-5 text-left space-y-2">
@@ -479,7 +479,7 @@
                     <!-- Ceremony 2 -->
                     <div class="gallery-item group relative overflow-hidden rounded-2xl border border-gold/10 bg-onyx-dark/30 p-2 transition-all duration-500 hover:border-gold/30 hover:shadow-[0_15px_30px_rgba(247,181,0,0.1)] md:mt-12">
                         <div class="overflow-hidden rounded-xl h-80 sm:h-96 relative">
-                            <img decoding="async" src="./images/candid_5.png" alt="Baraat Swagat" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
+                            <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_5.png" alt="Baraat Swagat" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-5 text-left space-y-2">
@@ -498,7 +498,7 @@
                     <!-- Ceremony 3 -->
                     <div class="gallery-item group relative overflow-hidden rounded-2xl border border-gold/10 bg-onyx-dark/30 p-2 transition-all duration-500 hover:border-gold/30 hover:shadow-[0_15px_30px_rgba(247,181,0,0.1)]">
                         <div class="overflow-hidden rounded-xl h-80 sm:h-96 relative">
-                            <img decoding="async" src="./images/candid_6.png" alt="Hawan &amp; Saptapadi" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
+                            <img loading="lazy" decoding="async" fetchpriority="low" src="./images/candid_6.png" alt="Hawan &amp; Saptapadi" class="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-onyx-dark via-transparent to-transparent opacity-60"></div>
                         </div>
                         <div class="p-5 text-left space-y-2">
@@ -684,6 +684,7 @@
                     <!-- Map Embed -->
                     <div class="story-card rounded-2xl overflow-hidden border border-gold/15 h-[400px] lg:h-auto min-h-[400px] relative transition-all duration-500 hover:border-gold/30">
                         <iframe 
+                            loading="lazy"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3774.404557!2d72.8332!3d18.9217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7d1c06fffffff%3A0x97594b07a5249c18!2sTaj%20Mahal%20Palace%20%26%20Tower!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                             class="w-full h-full absolute inset-0 border-0 grayscale contrast-125 opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                             allowfullscreen=""
@@ -720,7 +721,7 @@
             <div class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-8 relative flex items-center justify-center">
                 <div class="absolute inset-0 bg-gold/10 rounded-full blur-2xl animate-[pulse_4s_infinite]"></div>
                 <!-- Glowing Ganesha in the footer -->
-                <img src="./images/ganesha.png" alt="Shree Ganesha" class="w-full h-full object-contain relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.3)] hover:scale-110 transition-transform duration-500">
+                <img loading="lazy" decoding="async" fetchpriority="low" src="./images/ganesha.png" alt="Shree Ganesha" class="w-full h-full object-contain relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.3)] hover:scale-110 transition-transform duration-500">
             </div>
 
             <!-- Sacred Shloka -->

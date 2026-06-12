@@ -1,11 +1,34 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ─── Smooth Scroll (Lenis) ────────────────────────────────────────────────────
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+  direction: 'vertical',
+  gestureDirection: 'vertical',
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false,
+});
+
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const frameCount = 161;
 const images = new Array(frameCount).fill(null);
+const loadingFrames = new Set();
 const frameObj = { frame: 1 };
 
 // ─── DOM refs ─────────────────────────────────────────────────────────────────
@@ -23,7 +46,37 @@ const getFramePath = (i) =>
   `./hero_frames/ezgif-frame-${String(i).padStart(3, "0")}.jpg`;
 
 // ─── 1. Preloader ─────────────────────────────────────────────────────────────
-const CRITICAL_COUNT = 25;
+const CRITICAL_COUNT = 1;
+const BACKGROUND_BATCH = 4;
+const scheduleIdle = (cb) => {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(cb, { timeout: 1500 });
+  } else {
+    window.setTimeout(cb, 120);
+  }
+};
+
+function loadFrame(i, onComplete = () => {}, fetchPriority = "low") {
+  if (i < 1 || i > frameCount || images[i - 1] || loadingFrames.has(i)) {
+    onComplete();
+    return;
+  }
+
+  loadingFrames.add(i);
+  const img = new Image();
+  img.decoding = "async";
+  img.fetchPriority = fetchPriority;
+  img.onload = () => {
+    images[i - 1] = img;
+    loadingFrames.delete(i);
+    onComplete();
+  };
+  img.onerror = () => {
+    loadingFrames.delete(i);
+    onComplete();
+  };
+  img.src = getFramePath(i);
+}
 
 function preloadImages() {
   return new Promise((resolve) => {
@@ -45,43 +98,33 @@ function preloadImages() {
     }
 
     for (let i = 1; i <= CRITICAL_COUNT; i++) {
-      const img = new Image();
-      img.decoding = "async";
-      img.onload = () => { images[i - 1] = img; onCritLoad(); };
-      img.onerror = onCritLoad;
-      img.src = getFramePath(i);
+      loadFrame(i, onCritLoad, "high");
     }
   });
 }
 
 function loadRemaining() {
-  const BATCH = 10;
   let cursor = CRITICAL_COUNT + 1;
 
   function loadBatch() {
     if (cursor > frameCount) return;
     let pending = 0;
-    const end = Math.min(cursor + BATCH - 1, frameCount);
+    const end = Math.min(cursor + BACKGROUND_BATCH - 1, frameCount);
 
     for (let i = cursor; i <= end; i++) {
       pending++;
-      const img = new Image();
-      img.decoding = "async";
       const idx = i;
-      img.onload = () => {
-        images[idx - 1] = img;
+      loadFrame(idx, () => {
         pending--;
-        if (pending === 0) { cursor = end + 1; loadBatch(); }
-      };
-      img.onerror = () => {
-        pending--;
-        if (pending === 0) { cursor = end + 1; loadBatch(); }
-      };
-      img.src = getFramePath(i);
+        if (pending === 0) {
+          cursor = end + 1;
+          scheduleIdle(loadBatch);
+        }
+      });
     }
   }
 
-  loadBatch();
+  scheduleIdle(loadBatch);
 }
 
 // ─── 2. Canvas sizing ─────────────────────────────────────────────────────────
@@ -100,6 +143,9 @@ function resizeCanvas() {
 function drawFrame(idx) {
   idx = Math.max(1, Math.min(frameCount, Math.round(idx)));
 
+  if (!images[idx - 1] && !loadingFrames.has(idx)) {
+    loadFrame(idx, () => drawFrame(idx), "high");
+  }
   let img = images[idx - 1];
   if (!img) {
     for (let i = idx - 2; i >= 0; i--) {
@@ -112,6 +158,8 @@ function drawFrame(idx) {
     }
   }
   if (!img || !img.naturalWidth) return;
+  loadFrame(idx + 1);
+  loadFrame(idx + 2);
 
   const w = canvas.width / (window.devicePixelRatio || 1);
   const h = canvas.height / (window.devicePixelRatio || 1);
