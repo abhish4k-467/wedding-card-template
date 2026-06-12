@@ -177,7 +177,6 @@ function drawFrame(idx) {
 function initScrollAnimations() {
   // Prevent GSAP from causing layout jumps on mobile browsers
   ScrollTrigger.config({ ignoreMobileResize: true });
-  ScrollTrigger.normalizeScroll(true);
 
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -185,9 +184,7 @@ function initScrollAnimations() {
       start: "top top",
       end: "+=500%",
       scrub: 0.5,
-      pin: true,
-      // No anticipatePin — it causes scroll-up glitches
-      pinType: "transform" // Often helps prevent jumping when pinning inside a standard scroll
+      pin: true
     }
   });
 
